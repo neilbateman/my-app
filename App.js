@@ -19,6 +19,7 @@ function HomeScreen(props) {
   // const theme = useTheme();
   console.log('theme', props?.themeState)
   console.log(DarkTheme)
+  alert(DarkTheme.colors.background)
   return (
     <View
     style={{
@@ -59,7 +60,7 @@ export default function App() {
           theme={theme.dark === 'dark' ? CustomDarkTheme : CustomLightTheme}
           options={{
             headerTintColor: theme.colors.text,
-           headerStyle: {
+              headerStyle: {
              backgroundColor: theme.colors.background,
              borderBottomColor: theme.colors.headerBorder,
            },
