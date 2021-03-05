@@ -17,10 +17,10 @@ import {
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import DarkModeSwitch from "expo-dark-mode-switch";
-import { P, Footer, H3, A, Section, Main } from "@expo/html-elements";
-import { min } from 'react-native-reanimated';
-import { Avatar } from 'react-native-paper';
-
+import { P, Footer, H3, A, Section, Main, H1 } from "@expo/html-elements";
+import { min, sub } from 'react-native-reanimated';
+import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
+import { projects, bio } from './data.js'
 
 function HomeScreen(props) {
   const theme = useTheme();
@@ -39,6 +39,27 @@ function HomeScreen(props) {
           themeState={props.themeState}/>
     </View>
   );
+}
+
+function MyCards () {
+  return (
+    <>
+    {data.map(({title, subtitle, content, image}) => 
+    (<Card>
+      <Card.Title title={title} subtitle={subtitle} left={() =><Avatar.Image size={48} source={image} />} />
+      <Card.Content>
+        <Title>{title}</Title>
+        <Paragraph>{content}</Paragraph>
+      </Card.Content>
+      <Card.Cover source={image} />
+      <Card.Actions>
+        <Button>Cancel</Button>
+        <Button>Ok</Button>
+      </Card.Actions>
+    </Card>))
+    }
+    </>
+  )
 }
 function MyAvatar  () {
   const [small, toggleSize] = useState(true)
@@ -70,6 +91,14 @@ function SettingsScreen() {
     </View>
   );
 }
+function Bio () {
+  return (
+    <>
+    <H1>About</H1>
+    <H3></H3>
+    </>
+  )
+}
 function HomeContent(props) {
   const theme = useTheme();
   const { width, height } = useWindowDimensions();
@@ -94,12 +123,11 @@ function HomeContent(props) {
             },
           ]}
         >
-        <Text
-          style={{color: props.themeState.colors.text}}>Hey</Text>
+        <Bio/>
           
           
         </Section>
-          <Section
+          {/* <Section
             style={[
               styles.rowItem,
               {
@@ -111,10 +139,11 @@ function HomeContent(props) {
             style={{color: props.themeState.colors.text}}>Hey</Text>
 
 
-          </Section>
+          </Section> */}
           <Section style={styles.rowItem}>
             <Text
               style={{color: props.themeState.colors.text}}>YO</Text>
+              <MyCards/>
           </Section>
         </Main>
         <Footer style={{ justifyContent: "center", alignItems: "center" }}>
@@ -214,6 +243,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
+    margin: 20,
   },
   logo: {
     width: 66,
