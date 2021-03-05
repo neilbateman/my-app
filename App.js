@@ -4,9 +4,11 @@ import {
   View,
   Image,
   StyleSheet,
+  Platform,
   useColorScheme,
   TouchableOpacity,
-  useWindowDimensions
+  useWindowDimensions,
+  
  } from 'react-native';
 import {
   NavigationContainer,
@@ -18,14 +20,13 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import DarkModeSwitch from "expo-dark-mode-switch";
 import { P, Footer, H3, A, Section, Main, H1 } from "@expo/html-elements";
-import { min, sub } from 'react-native-reanimated';
 import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
 import { projects, bio } from './data.js'
 
 function HomeScreen(props) {
   const theme = useTheme();
-  console.log('theme', props?.themeState)
-  console.log(DarkTheme)
+  // console.log('theme', props?.themeState)
+  // console.log(DarkTheme)
   return (
     <View
     style={{
@@ -44,20 +45,27 @@ function HomeScreen(props) {
 function MyCards () {
   return (
     <>
-    {data.map(({title, subtitle, content, image}) => 
-    (<Card>
-      <Card.Title title={title} subtitle={subtitle} left={() =><Avatar.Image size={48} source={image} />} />
-      <Card.Content>
-        <Title>{title}</Title>
-        <Paragraph>{content}</Paragraph>
-      </Card.Content>
-      <Card.Cover source={image} />
-      <Card.Actions>
-        <Button>Cancel</Button>
-        <Button>Ok</Button>
-      </Card.Actions>
-    </Card>))
-    }
+      {
+        projects.map(({title, subtitle, content, image}, index) => (
+        <View key={index}>
+          <Card style={{padding: 20,}}>
+            <Card.Title 
+              title={title} 
+              subtitle={subtitle} 
+              left={() =><Avatar.Image size={48} source={image} />} />
+            <Card.Content>
+              <Title>{title}</Title>
+              <Paragraph>{content}</Paragraph>
+            </Card.Content>
+            <Card.Cover source={image} />
+            <Card.Actions>
+              <Button>Cancel</Button>
+              <Button>Ok</Button>
+            </Card.Actions>
+          </Card>
+      </View>
+        ))
+      }
     </>
   )
 }
@@ -68,7 +76,7 @@ function MyAvatar  () {
       style={{paddingLeft: 10}}
       onPress={()=>toggleSize(!small)}>
         {small ? 
-          <Avatar.Image size={48} source={require('./neil-min.png')} />
+          <Avatar.Image size={48} source={require('./assets/neil-min.png')} />
           :
           <View
             style={{
@@ -76,7 +84,7 @@ function MyAvatar  () {
               justifyContent: 'center',
               alignItems: 'center',
             }}>
-          <Avatar.Image size={96 *5} source={require('./neil-min.png')} />
+          <Avatar.Image size={96 *5} source={require('./assets/neil-min.png')} />
           </View>
         }
 
@@ -92,10 +100,12 @@ function SettingsScreen() {
   );
 }
 function Bio () {
+  const theme = useTheme()
   return (
     <>
-    <H1>About</H1>
-    <H3></H3>
+    <H1 style={{color: theme?.colors.text}}>About</H1>
+    <H3 style={{color: theme?.colors.text}}>{bio.hello}</H3>
+    <H3 style={{color: theme?.colors.text}}>{bio.skills}</H3>
     </>
   )
 }
@@ -103,21 +113,21 @@ function HomeContent(props) {
   const theme = useTheme();
   const { width, height } = useWindowDimensions();
   const isMobile = width < 640;
-
+  console.log(isMobile)
   return (
     <View style={{ flex: 1 }}>
         <Main
           style={{
             flex: 1,
             backgroundColor: props.themeState.colors.background,
-            paddingVertical: isMobile ? 18 : 0,
+            paddingVertical: isMobile ? 50 : 0,
             flexDirection: isMobile ? "column" : "row",
           }}
         >
         
         <Section
           style={[
-            styles.rowItem,
+            stuff.rowItem,
             {
               paddingVertical: isMobile ? 18 : 0,
             },
@@ -140,7 +150,7 @@ function HomeContent(props) {
 
 
           </Section> */}
-          <Section style={styles.rowItem}>
+          <Section style={stuff.rowItem}>
             <Text
               style={{color: props.themeState.colors.text}}>YO</Text>
               <MyCards/>
@@ -234,20 +244,65 @@ const CustomDarkTheme = {
     headerBorder: "rgba(224,224,224, 0.3)",
   },
 };
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     backgroundColor: "#fff",
+//   },
+//   rowItem: {
+//     flex: 1,
+//     alignItems: "center",
+//     justifyContent: "center",
+//     margin: 20,
+//   },
+//   logo: {
+//     width: 66,
+//     height: 58,
+//     borderRadius: 50%,
+//   },
+// });
+const stuff = {...Platform.select({
+  android: {
+    rowItem: {
+      flex: 1,
+      alignItems: "center",
+      justifyContent: "center",
+      margin: 20,
+    },
+    logo: {
+      width: 66,
+      height: 58,
+    },
+  },
+  ios: {
+    rowItem: {
+      flex: 1,
+      alignItems: "center",
+      justifyContent: "center",
+      margin: 20,
+    },
+    logo: {
+      width: 66,
+      height: 58,
+    },
+  },
+  default: {
+    rowItem: {
+      flex: 1,
+      alignItems: "center",
+      justifyContent: "center",
+      margin: 20,
+    },
+    logo: {
+      width: 66,
+      height: 58,
+      borderRadius: "50%"
+    },
+  }
+})}
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
   },
-  rowItem: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    margin: 20,
-  },
-  logo: {
-    width: 66,
-    height: 58,
-    borderRadius: "50%"
-  },
+    
 });
