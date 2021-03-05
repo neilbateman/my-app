@@ -2,13 +2,10 @@ import React, { useState } from 'react'
 import {
   Text,
   View,
-  Image,
   StyleSheet,
   Platform,
   useColorScheme,
-  TouchableOpacity,
-  useWindowDimensions,
-  
+  useWindowDimensions
  } from 'react-native';
 import {
   NavigationContainer,
@@ -19,14 +16,14 @@ import {
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import DarkModeSwitch from "expo-dark-mode-switch";
-import { P, Footer, H3, A, Section, Main, H1 } from "@expo/html-elements";
-import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
-import { projects, bio } from './data.js'
+import { P, Footer, H3, A, Section, Main, H1, BR } from "@expo/html-elements";
+import { bio } from './data.js'
+const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator()
+
 
 function HomeScreen(props) {
   const theme = useTheme();
-  // console.log('theme', props?.themeState)
-  // console.log(DarkTheme)
   return (
     <View
     style={{
@@ -42,55 +39,8 @@ function HomeScreen(props) {
   );
 }
 
-function MyCards () {
-  return (
-    <>
-      {
-        projects.map(({title, subtitle, content, image}, index) => (
-        <View key={index}>
-          <Card style={{padding: 20,}}>
-            <Card.Title 
-              title={title} 
-              subtitle={subtitle} 
-              left={() =><Avatar.Image size={48} source={image} />} />
-            <Card.Content>
-              <Title>{title}</Title>
-              <Paragraph>{content}</Paragraph>
-            </Card.Content>
-            <Card.Cover source={image} />
-            <Card.Actions>
-              <Button>Cancel</Button>
-              <Button>Ok</Button>
-            </Card.Actions>
-          </Card>
-      </View>
-        ))
-      }
-    </>
-  )
-}
-function MyAvatar  () {
-  const [small, toggleSize] = useState(true)
-  return (
-    <TouchableOpacity
-      style={{paddingLeft: 10}}
-      onPress={()=>toggleSize(!small)}>
-        {small ? 
-          <Avatar.Image size={48} source={require('./assets/neil-min.png')} />
-          :
-          <View
-            style={{
-              paddingTop: 500,
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}>
-          <Avatar.Image size={96 *5} source={require('./assets/neil-min.png')} />
-          </View>
-        }
 
-      </TouchableOpacity>
-  )
-}
+
 
 function SettingsScreen() {
   return (
@@ -99,13 +49,22 @@ function SettingsScreen() {
     </View>
   );
 }
-function Bio () {
-  const theme = useTheme()
+function Bio (props) {
+  //const theme = useTheme()
   return (
     <>
-    <H1 style={{color: theme?.colors.text}}>About</H1>
-    <H3 style={{color: theme?.colors.text}}>{bio.hello}</H3>
-    <H3 style={{color: theme?.colors.text}}>{bio.skills}</H3>
+    <H1 style={{color: props?.themeState.colors.text}}>Hello!</H1>
+    <H3 style={{color: props?.themeState.colors.text}}>{bio.hello} 
+    
+      <A
+        style={{ color: "purple"}}
+        target="_blank"
+        href="http://nombolo.com"
+      >
+        Nombolo
+      </A>
+    </H3>
+    <H3 style={{color: props?.themeState.colors.text}}>{bio.skills}</H3>
     </>
   )
 }
@@ -113,7 +72,7 @@ function HomeContent(props) {
   const theme = useTheme();
   const { width, height } = useWindowDimensions();
   const isMobile = width < 640;
-  console.log(isMobile)
+
   return (
     <View style={{ flex: 1 }}>
         <Main
@@ -124,39 +83,16 @@ function HomeContent(props) {
             flexDirection: isMobile ? "column" : "row",
           }}
         >
-        
-        <Section
-          style={[
-            stuff.rowItem,
-            {
-              paddingVertical: isMobile ? 18 : 0,
-            },
-          ]}
-        >
-        <Bio/>
-          
-          
-        </Section>
-          {/* <Section
+          <Section
             style={[
-              styles.rowItem,
-              {
-                paddingVertical: isMobile ? 18 : 0,
-              },
+              stuff.rowItem,
+              { paddingVertical: isMobile ? 18 : 0},
             ]}
           >
-          <Text
-            style={{color: props.themeState.colors.text}}>Hey</Text>
-
-
-          </Section> */}
-          <Section style={stuff.rowItem}>
-            <Text
-              style={{color: props.themeState.colors.text}}>YO</Text>
-              <MyCards/>
+            <Bio themeState={props.themeState}/> 
           </Section>
         </Main>
-        <Footer style={{ justifyContent: "center", alignItems: "center" }}>
+        <Footer style={{ justifyContent: "center", alignItems: "center", textAlign: "center" }}>
           <H3
             style={{
               fontSize: 14,
@@ -164,22 +100,31 @@ function HomeContent(props) {
               color: props.themeState.dark ? "#ABB8C3" : "#607d8b",
             }}
           >
-            Made by{" "}
+         
+            Made with{" "}
             <A
               style={{ color: props.themeState.dark ? "white" : "black" }}
               target="_blank"
+              href="http://expo.io"
+            >
+              Expo
+            </A>
+            {"\n"}
+            <A
+              style={{ color: props.themeState.dark ? "white" : "black", textAlign: "center"  }}
+              target="_blank"
               href="http://github.com/neilbateman"
             >
-              Neil
+              Source{" "}
             </A>
           </H3>
+           
         </Footer>
       </View>
   );
 }
 
-const Tab = createBottomTabNavigator();
-const Stack = createStackNavigator()
+
 export default function App() {
   const scheme = useColorScheme();
   const [theme, setTheme] = React.useState(
@@ -190,7 +135,7 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          name="Home"
+          name="Neil Bateman"
           children={()=><HomeScreen themeState={theme} themeSetter={setTheme}/>}
           theme={theme.dark === 'dark' ? CustomDarkTheme : CustomLightTheme}
           options={{
@@ -199,9 +144,6 @@ export default function App() {
              backgroundColor: theme.colors.background,
              borderBottomColor: theme.colors.headerBorder,
            },
-           headerLeft: () => (
-            <MyAvatar/>
-           ),
             headerRight: () => (
               <View style={{ flexDirection: "row", alignItems: "center", paddingRight: 10 }}>
                 <DarkModeSwitch
@@ -244,23 +186,7 @@ const CustomDarkTheme = {
     headerBorder: "rgba(224,224,224, 0.3)",
   },
 };
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: "#fff",
-//   },
-//   rowItem: {
-//     flex: 1,
-//     alignItems: "center",
-//     justifyContent: "center",
-//     margin: 20,
-//   },
-//   logo: {
-//     width: 66,
-//     height: 58,
-//     borderRadius: 50%,
-//   },
-// });
+
 const stuff = {...Platform.select({
   android: {
     rowItem: {
