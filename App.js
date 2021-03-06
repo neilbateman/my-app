@@ -16,103 +16,13 @@ import {
 import { createStackNavigator } from '@react-navigation/stack';
 import DarkModeSwitch from "expo-dark-mode-switch";
 import { P, Footer, H3, A, Section, Main, H1, BR,  } from "@expo/html-elements";
-import { Avatar } from 'react-native-paper';
-
+import SettingsScreen from './screens/SettingsScreen'
+import FooterContent from './components/FooterContent'
 import MyAvatar from './components/MyAvatar'
 import IconRow from './components/IconRow'
-import { bio } from './data.js'
+import Bio from './components/Bio'
 const Stack = createStackNavigator()
 
-
-function HomeScreen(props) {
-  const theme = useTheme();
-  const { width, height } = useWindowDimensions();
-  console.log(height)
-  return (
-    <View
-    style={{
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: props.themeState.dark ?  CustomDarkTheme.colors.background : CustomLightTheme.colors.background,
-      height: height /3
-    }}
-      >
-        <HomeContent
-          themeState={props.themeState}/>
-    </View>
-  );
-}
-
-
-
-
-function SettingsScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Settings!</Text>
-    </View>
-  );
-}
-function Bio (props) {
-  //const theme = useTheme()
-  return (
-    <>
-    <H1 style={{color: props?.themeState.colors.text}}>Hello!</H1>
-    <H3 style={{color: props?.themeState.colors.text}}>{bio.hello} 
-      <A
-        style={{ color: "#5BA9AB"}}
-        target="_blank"
-        href="http://nombolo.com"
-      >
-        Nombolo
-      </A>
-    </H3>
-    <H3 style={{color: props?.themeState.colors.text}}>{bio.skills}</H3>
-    <H3 style={{color: props?.themeState.colors.text}}>{bio.peruse}</H3>
-    </>
-  )
-}
-function FooterContent(props) {
-  const { width, height } = useWindowDimensions();
-  const isMobile = width < 640;
-  return (
-    <H3
-            style={{
-              fontSize: 14,
-              paddingBottom: isMobile ? 18 : 0,
-              color: props.themeState.dark ? "#ABB8C3" : "#607d8b",
-            }}
-          >
-         
-            Made with{" "}
-            <A
-              style={{ color: props.themeState.dark ? "white" : "black", textAlign: "center" }}
-              target="_blank"
-              href="http://expo.io"
-            >
-              Expo
-            </A>
-            {"\n"}
-            <A
-              style={{ color: props.themeState.dark ? "white" : "black", textAlign: "center"  }}
-              target="_blank"
-              href="http://github.com/neilbateman/my-app"
-            >
-              Source{" "}{" "}{" "}{" "}{" "}
-            </A>
-            
-            <A
-              style={{ color: props.themeState.dark ? "white" : "black", textAlign: "center"  }}
-              target="_blank"
-              href="./assets/Neil_Bateman_Resume.pdf"
-            >
-              Resume{" "}
-            </A>
-          </H3>
-           
-  )
-}
 function HomeContent(props) {
   const theme = useTheme();
   const { width, height } = useWindowDimensions();
@@ -143,6 +53,24 @@ function HomeContent(props) {
           <FooterContent themeState={props.themeState}/>
         </Footer>
       </View>
+  );
+}
+
+function HomeScreen(props) {
+  const { height } = useWindowDimensions();
+  return (
+    <View
+      style={{
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: props.themeState.dark ?  CustomDarkTheme.colors.background : CustomLightTheme.colors.background,
+        height: height /3
+      }}
+      >
+        <HomeContent
+          themeState={props.themeState}/>
+    </View>
   );
 }
 
