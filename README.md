@@ -1,4 +1,3 @@
-# [Platform Agnostic Portfolio](https://master.d3ht7dm7chibd7.amplifyapp.com/) 
 
 <p>
   <!-- iOS -->
