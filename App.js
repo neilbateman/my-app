@@ -3,9 +3,8 @@ import {
   Text,
   View,
   Image,
-  StyleSheet,
+  Platform,
   useColorScheme,
-  TouchableOpacity,
   useWindowDimensions
  } from 'react-native';
 import {
@@ -14,62 +13,16 @@ import {
   DarkTheme,
   useTheme
  } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import DarkModeSwitch from "expo-dark-mode-switch";
-import { P, Footer, H3, A, Section, Main } from "@expo/html-elements";
-import { min } from 'react-native-reanimated';
-import { Avatar } from 'react-native-paper';
+import { P, Footer, H3, A, Section, Main, H1, BR,  } from "@expo/html-elements";
+import SettingsScreen from './screens/SettingsScreen'
+import FooterContent from './components/FooterContent'
+import MyAvatar from './components/MyAvatar'
+import IconRow from './components/IconRow'
+import Bio from './components/Bio'
+const Stack = createStackNavigator()
 
-
-function HomeScreen(props) {
-  const theme = useTheme();
-  console.log('theme', props?.themeState)
-  console.log(DarkTheme)
-  return (
-    <View
-    style={{
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: props.themeState.dark ?  DarkTheme.colors.background : DefaultTheme.colors.background
-    }}
-      >
-        <HomeContent
-          themeState={props.themeState}/>
-    </View>
-  );
-}
-function MyAvatar  () {
-  const [small, toggleSize] = useState(true)
-  return (
-    <TouchableOpacity
-      style={{paddingLeft: 10}}
-      onPress={()=>toggleSize(!small)}>
-        {small ? 
-          <Avatar.Image size={48} source={require('./neil-min.png')} />
-          :
-          <View
-            style={{
-              paddingTop: 500,
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}>
-          <Avatar.Image size={96 *5} source={require('./neil-min.png')} />
-          </View>
-        }
-
-      </TouchableOpacity>
-  )
-}
-
-function SettingsScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Settings!</Text>
-    </View>
-  );
-}
 function HomeContent(props) {
   const theme = useTheme();
   const { width, height } = useWindowDimensions();
@@ -81,77 +34,56 @@ function HomeContent(props) {
           style={{
             flex: 1,
             backgroundColor: props.themeState.colors.background,
-            paddingVertical: isMobile ? 18 : 0,
+            paddingVertical: isMobile ? 50 : 0,
             flexDirection: isMobile ? "column" : "row",
           }}
         >
-        
-        <Section
-          style={[
-            styles.rowItem,
-            {
-              paddingVertical: isMobile ? 18 : 0,
-            },
-          ]}
-        >
-        <Text
-          style={{color: props.themeState.colors.text}}>Hey</Text>
-          
-          
-        </Section>
           <Section
             style={[
-              styles.rowItem,
-              {
-                paddingVertical: isMobile ? 18 : 0,
-              },
+              style.rowItem,
+              { paddingVertical: isMobile ? 18 : 0},
             ]}
           >
-          <Text
-            style={{color: props.themeState.colors.text}}>Hey</Text>
-
-
-          </Section>
-          <Section style={styles.rowItem}>
-            <Text
-              style={{color: props.themeState.colors.text}}>YO</Text>
+            <MyAvatar/>
+            <Bio themeState={props.themeState}/> 
+            <IconRow/>
           </Section>
         </Main>
-        <Footer style={{ justifyContent: "center", alignItems: "center" }}>
-          <H3
-            style={{
-              fontSize: 14,
-              paddingBottom: isMobile ? 18 : 0,
-              color: props.themeState.dark ? "#ABB8C3" : "#607d8b",
-            }}
-          >
-            Made by{" "}
-            <A
-              style={{ color: props.themeState.dark ? "white" : "black" }}
-              target="_blank"
-              href="http://github.com/neilbateman"
-            >
-              Neil
-            </A>
-          </H3>
+        <Footer style={{ justifyContent: "center", alignItems: "center", textAlign: "center" }}>
+          <FooterContent themeState={props.themeState}/>
         </Footer>
       </View>
   );
 }
 
-const Tab = createBottomTabNavigator();
-const Stack = createStackNavigator()
+function HomeScreen(props) {
+  const { height } = useWindowDimensions();
+  return (
+    <View
+      style={{
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: props.themeState.dark ?  CustomDarkTheme.colors.background : CustomLightTheme.colors.background,
+        height: height /3
+      }}
+      >
+        <HomeContent
+          themeState={props.themeState}/>
+    </View>
+  );
+}
+
+
 export default function App() {
   const scheme = useColorScheme();
-  const [theme, setTheme] = React.useState(
-    scheme === "light" ? CustomLightTheme : CustomDarkTheme);
-  //console.log('this is theme', theme)
-  //console.log(scheme)
+  const [theme, setTheme] = useState(scheme === "light" ? CustomLightTheme : CustomDarkTheme);
+ 
   return (
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          name="Home"
+          name="Neil Bateman"
           children={()=><HomeScreen themeState={theme} themeSetter={setTheme}/>}
           theme={theme.dark === 'dark' ? CustomDarkTheme : CustomLightTheme}
           options={{
@@ -160,9 +92,6 @@ export default function App() {
              backgroundColor: theme.colors.background,
              borderBottomColor: theme.colors.headerBorder,
            },
-           headerLeft: () => (
-            <MyAvatar/>
-           ),
             headerRight: () => (
               <View style={{ flexDirection: "row", alignItems: "center", paddingRight: 10 }}>
                 <DarkModeSwitch
@@ -205,19 +134,31 @@ const CustomDarkTheme = {
     headerBorder: "rgba(224,224,224, 0.3)",
   },
 };
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
+
+const style = {
+  ...Platform.select({
+  android: {
+    rowItem: {
+      flex: 1,
+      alignItems: "center",
+      justifyContent: "center",
+      margin: 20,
+    }
   },
-  rowItem: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
+  ios: {
+    rowItem: {
+      flex: 1,
+      alignItems: "center",
+      justifyContent: "center",
+      margin: 20,
+    }
   },
-  logo: {
-    width: 66,
-    height: 58,
-    borderRadius: "50%"
-  },
-});
+  default: {
+    rowItem: {
+      flex: 1,
+      alignItems: "center",
+      justifyContent: "center",
+      margin: 20,
+    }
+  }
+})}
