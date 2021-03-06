@@ -1,6 +1,9 @@
 import React from 'react'
+import {
+    View,
+   } from 'react-native';
 import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
-import { projects } from './data.js'
+import { projects } from '../data.js'
 
 export default function MyCards () {
     return (

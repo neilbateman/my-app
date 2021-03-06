@@ -22,7 +22,8 @@ export const projects = [
   ]
 
   export const bio = {
-      hello: `Hello, my name is Neil and I am a software developer. I am presently creating a startup in Portland called `,
-      skills: "My focus has been on React Native, and I emphatically embrace the philosophy of “learn once, write anywhere”."
+      hello: `My name is Neil and I am a software developer. I am presently helping create a startup in Portland called `,
+      skills: "I enjoy designing scalable backend infrastructures and I emphatically embrace the philosophy of “learn once, write anywhere”.",
+      peruse: "Please enjoy perusing my online presence and various content:"
   }
   
