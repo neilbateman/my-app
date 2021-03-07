@@ -27,7 +27,7 @@ export default function HomeContent() {
             <Section
               style={[
                 style.rowItem,
-                { paddingVertical: isMobile ? 18 : 0},
+                { paddingVertical: isMobile ? 18 : 0}
               ]}
             >
               <MyAvatar/>
@@ -35,7 +35,7 @@ export default function HomeContent() {
               <IconRow/>
             </Section>
           </Main>
-          <Footer style={{ justifyContent: "center", alignItems: "center", textAlign: "center" }}>
+          <Footer>
             <FooterContent/>
           </Footer>
         </View>
@@ -50,7 +50,7 @@ export default function HomeContent() {
         alignItems: "center",
         justifyContent: "center",
         margin: 20,
-      }
+      },    
     },
     ios: {
       rowItem: {
@@ -58,14 +58,20 @@ export default function HomeContent() {
         alignItems: "center",
         justifyContent: "center",
         margin: 20,
-      }
-    },
+      }, 
+   },
     default: {
       rowItem: {
         flex: 1,
         alignItems: "center",
         justifyContent: "center",
         margin: 20,
-      }
-    }
+      },
+    },
+    rowItem: {
+      flex: 1,
+      alignItems: "center",
+      justifyContent: "center",
+      margin: 20,
+    },
   })}

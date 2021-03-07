@@ -4,6 +4,7 @@ import {
    } from 'react-native';
 import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
 import { projects } from '../data.js'
+
 // not doing anything with this atm, will probably remove react-native-paper dependency
 export default function MyCards () {
     return (

@@ -2,6 +2,7 @@ import React from 'react'
 import { H3, A, H1  } from "@expo/html-elements";
 import { bio } from '../data.js'
 import { useTheme } from '@react-navigation/native';
+
 export default function Bio () {
   const theme = useTheme()
 

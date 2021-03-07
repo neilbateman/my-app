@@ -5,7 +5,6 @@ import { H3, A } from "@expo/html-elements";
 import { useTheme } from '@react-navigation/native';
 
 export default function FooterContent() {
-
   const theme = useTheme()
   const { width } = useWindowDimensions();
   const isMobile = width < 640;
