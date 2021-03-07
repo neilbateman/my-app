@@ -1,4 +1,4 @@
-# [Neil's Platform Agnostic Portfolio](https://neilbateman.org/) 
+# [Neil's Platform Agnostic Portfolio](https://neilbateman.surge.sh/) 
 
 <p>
   <!-- iOS -->
