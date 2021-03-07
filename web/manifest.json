@@ -1,0 +1,8 @@
+{
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "lang": "en",
+  "name": "my-portfolio",
+  "short_name": "my-portfolio",
+  "start_url": "/?utm_source=web_app_manifest"
+}
