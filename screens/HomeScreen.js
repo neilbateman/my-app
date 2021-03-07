@@ -1,34 +1,36 @@
-import React, { useState } from 'react'
+import React from 'react'
 import {
-  Text,
   View,
-  Image,
   Platform,
-  useColorScheme,
   ScrollView,
   useWindowDimensions
  } from 'react-native';
+ import {
+  DefaultTheme,
+  DarkTheme,
+  useTheme
+ } from '@react-navigation/native';
+ import { HomeContent } from '../components'
 
-export default function HomeScreen(props) {
-    const { width, height } = useWindowDimensions();
-    console.log(height)
-    return (
-      <ScrollView scrollEnabled={true}>
-      <View
-        style={{
-          flex: 1,
-          justifyContent: 'center',
-          alignItems: 'center',
-          backgroundColor: props.themeState.dark ?  CustomDarkTheme.colors.background : CustomLightTheme.colors.background,
-          height: height /3
-        }}
-        >
-          <HomeContent
-            themeState={props.themeState}/>
-      </View>
+ export default function HomeScreen() {
+  const theme = useTheme()
+  const { height } = useWindowDimensions();
+  return (
+    <View
+      style={{
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: theme.dark ?  CustomDarkTheme.colors.background : CustomLightTheme.colors.background,
+        height: height /3
+      }}
+      >
+      <ScrollView>
+        <HomeContent style={style}/>
       </ScrollView>
-    );
-  }
+    </View>
+  );
+}
 
   const CustomLightTheme = {
     ...DefaultTheme,
@@ -48,3 +50,31 @@ export default function HomeScreen(props) {
       headerBorder: "rgba(224,224,224, 0.3)",
     },
   };
+
+  const style = {
+    ...Platform.select({
+    android: {
+      rowItem: {
+        flex: 1,
+        alignItems: "center",
+        justifyContent: "center",
+        margin: 20,
+      }
+    },
+    ios: {
+      rowItem: {
+        flex: 1,
+        alignItems: "center",
+        justifyContent: "center",
+        margin: 20,
+      }
+    },
+    default: {
+      rowItem: {
+        flex: 1,
+        alignItems: "center",
+        justifyContent: "center",
+        margin: 20,
+      }
+    }
+  })}
