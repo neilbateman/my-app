@@ -3,7 +3,7 @@ export const projects = [
       title: "hey",
       subtitle: "a;lsdjfalksjdflaksjdf;laksjdflaksjdflaskjdf a;slkdjfaskldfjaslkdjf",
       content: "I am content",
-      image: require('./assets/neil-min.png')
+      image: require('./assets/neil-min-min.png')
     },
     // {
     //   title: "hey",
@@ -27,12 +27,12 @@ export const projects = [
   
   export const images = [
     { 
-            image: require("./assets/gitlab.png"),
+            image: require("./assets/gitlab-rgb.png"),
              url: "https://gitlab.com/nomboloneil"
     },
     { 
           
-           image: require("./assets/github.png"),
+           image: require("./assets/Octocat.png"),
            url: "https://github.com/neilbateman"
         
     },

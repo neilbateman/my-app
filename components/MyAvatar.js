@@ -6,8 +6,8 @@ export default function MyAvatar  () {
     return (
       <TouchableOpacity onPress={()=> toggleSize(!small)}>
             <Avatar.Image 
-                size={small ? 96 : 192} 
-                source={require('../assets/neil-min.png')} 
+                size={small ? 144 : 288} 
+                source={require('../assets/neil-min-min.png')} 
                 />
       </TouchableOpacity>
     )

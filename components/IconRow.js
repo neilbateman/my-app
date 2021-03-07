@@ -11,6 +11,7 @@ import MyAvatar from '../components/MyAvatar'
 import { images } from '../data.js'
 
 export default function IconRow() {
+    const { width, height } = useWindowDimensions()
     return (
         <View style={{flexDirection: "row"}} >
             {
@@ -21,7 +22,7 @@ export default function IconRow() {
                 target="_blank"
                 href={image.url}>
                     <Image
-                        style={{width: 50, height: 50, paddingLeft: 100}}
+                        style={{width: width /10, height: height/10, paddingLeft: 100}}
                         resizeMode={'contain'}
                         source={image.image}
                     />

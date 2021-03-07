@@ -4,6 +4,7 @@ import {
   View,
   Image,
   Platform,
+  ScrollView,
   useColorScheme,
   useWindowDimensions
  } from 'react-native';
@@ -68,8 +69,10 @@ function HomeScreen(props) {
         height: height /3
       }}
       >
+      <ScrollView>
         <HomeContent
           themeState={props.themeState}/>
+      </ScrollView>
     </View>
   );
 }

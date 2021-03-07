@@ -5,6 +5,7 @@ import {
   Image,
   Platform,
   useColorScheme,
+  ScrollView,
   useWindowDimensions
  } from 'react-native';
 
@@ -12,6 +13,7 @@ export default function HomeScreen(props) {
     const { width, height } = useWindowDimensions();
     console.log(height)
     return (
+      <ScrollView scrollEnabled={true}>
       <View
         style={{
           flex: 1,
@@ -24,6 +26,7 @@ export default function HomeScreen(props) {
           <HomeContent
             themeState={props.themeState}/>
       </View>
+      </ScrollView>
     );
   }
 

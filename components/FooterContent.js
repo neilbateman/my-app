@@ -6,7 +6,8 @@ import {
     Image,
     Platform,
     useColorScheme,
-    useWindowDimensions
+    useWindowDimensions,
+    TouchableOpacity
    } from 'react-native';
 import { P, Footer, H3, A, Section, Main, H1, BR,  } from "@expo/html-elements";
 
@@ -16,13 +17,15 @@ export default function FooterContent(props) {
     return (
       <H3 style={{
             fontSize: 14,
+            //height: height / 12,
             paddingBottom: isMobile ? 18 : 0,
             color: props.themeState.dark ? "#ABB8C3" : "#607d8b",
+            textAlign: "center"
               }}
             >
               Made with{" "}
               <A
-                style={{ color: props.themeState.dark ? "white" : "black", textAlign: "center" }}
+                style={{ color: props.themeState.dark ? "white" : "black", }}
                 target="_blank"
                 href="http://expo.io"
               >
@@ -30,19 +33,18 @@ export default function FooterContent(props) {
               </A>
               {"\n"}
               <A
-                style={{ color: props.themeState.dark ? "white" : "black", textAlign: "center"  }}
+                style={{ color: props.themeState.dark ? "white" : "black",  }}
                 target="_blank"
                 href="http://github.com/neilbateman/my-app"
               >
-                Source{" "}{" "}{" "}{" "}{" "}
+                Source{" "}{" "}
               </A>
-              
               <A
-                style={{ color: props.themeState.dark ? "white" : "black", textAlign: "center"  }}
+                style={{ color: props.themeState.dark ? "white" : "black",  }}
                 target="_blank"
-                href="../assets/Neil_Bateman_Resume.pdf"
+                href="http://github.com/neilbateman/my-app"
               >
-                Resume{" "}
+                Resume
               </A>
             </H3>
              

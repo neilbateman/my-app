@@ -5,7 +5,7 @@ import { bio } from '../data.js'
 export default function Bio (props) {
     return (
       <>
-      <H1 style={{color: props?.themeState.colors.text}}>Hello!</H1>
+      <H1 style={{color: props?.themeState.colors.text}}>Hello</H1>
       <H3 style={{color: props?.themeState.colors.text}}>{bio.hello} 
         <A
           style={{ color: "#5BA9AB"}}
