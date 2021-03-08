@@ -27,17 +27,16 @@ export const projects = [
   
   export const images = [
     { 
-            image: require("./assets/gitlab-rgb.png"),
-             url: "https://gitlab.com/nomboloneil"
+            icon: require("./assets/gitlab-rgb.png"),
+            url: "https://gitlab.com/nomboloneil"
     },
     { 
-          
-           image: require("./assets/Octocat.png"),
+           icon: require("./assets/Octocat.png"),
            url: "https://github.com/neilbateman"
         
     },
     {
-           image: require("./assets/linky.png"),
+           icon: require("./assets/linky.png"),
            url: "https://www.linkedin.com/in/neilbateman/"
     }
     ]

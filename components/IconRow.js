@@ -21,7 +21,7 @@ export default function IconRow() {
                     <Image
                         style={{width: width / 10, height: height/ 10, paddingLeft: 100}}
                         resizeMode={'contain'}
-                        source={image.image}
+                        source={image.icon}
                     />
                 </A>
             </View>
