@@ -5,8 +5,8 @@ import {
   useWindowDimensions
  } from 'react-native';
 import { useTheme } from '@react-navigation/native';
- import { Bio, IconRow, MyAvatar, FooterContent } from './'
- import { Footer, Section, Main } from "@expo/html-elements";
+import { Bio, IconRow, MyAvatar, FooterContent } from './'
+import { Footer, Section, Main } from "@expo/html-elements";
 
 
 export default function HomeContent() {
@@ -20,7 +20,7 @@ export default function HomeContent() {
             style={{
               flex: 1,
               backgroundColor: theme.colors.background,
-              paddingVertical: isMobile ? 50 : 0,
+              paddingVertical: isMobile ? 0 : 50,
               flexDirection: isMobile ? "column" : "row",
             }}
           >
@@ -32,7 +32,9 @@ export default function HomeContent() {
             >
               <MyAvatar/>
               <Bio/> 
+              <View >
               <IconRow/>
+              </View>
             </Section>
           </Main>
           <Footer>

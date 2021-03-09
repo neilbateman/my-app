@@ -22,7 +22,6 @@ import {
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: theme.dark ?  CustomDarkTheme.colors.background : CustomLightTheme.colors.background,
-        height: height /3
       }}
       >
       <ScrollView>
