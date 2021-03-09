@@ -1,4 +1,4 @@
-import React from 'react'
+import React , {useEffect} from 'react'
 import {
   View,
   Platform,
@@ -13,14 +13,20 @@ export default function HomeContent() {
     const theme = useTheme();
     const { width, height } = useWindowDimensions();
     const isMobile = width < 640;
-  
+    const isFullScreen = width < 1000;
+    useEffect(() => {
+      if (width) {
+        console.log(width)
+
+      }
+    }, [width])
     return (
       <View style={{ flex: 1 }}>
           <Main
             style={{
               flex: 1,
               backgroundColor: theme.colors.background,
-              paddingVertical: isMobile ? 0 : 50,
+              paddingVertical: isMobile ? 0 : 15,
               flexDirection: isMobile ? "column" : "row",
             }}
           >
@@ -37,9 +43,17 @@ export default function HomeContent() {
               </View>
             </Section>
           </Main>
-          <Footer>
+          <View style={{position: "absolute",
+  bottom: 0,
+  width: "100%",
+  height: "2.5rem",      }}>
+          <Footer style={{position: "absolute",
+  bottom: 0,
+  width: "100%",
+  height: "2.5rem",      }}>
             <FooterContent/>
           </Footer>
+          </View>
         </View>
     );
   }
