@@ -15,10 +15,15 @@ export default function NavigationContent() {
       <NavigationContainer theme={theme}>
         <Stack.Navigator>
           <Stack.Screen
-            name="Neil Bateman"
+            name={"Neil Bateman"}
+            title={"Awesome"}
             children={() => <HomeScreen />}
             options={{
               headerTintColor: theme.colors.text,
+              headerTitleStyle: {
+                fontFamily: "Helvetica",
+                fontWeight: "bold"
+              }, 
               headerStyle: {
                backgroundColor: theme.colors.background,
                borderBottomColor: theme.colors.headerBorder,
