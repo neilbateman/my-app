@@ -20,7 +20,7 @@ export default function HomeContent() {
             style={{
               flex: 1,
               backgroundColor: theme.colors.background,
-              paddingVertical: isMobile ? 0 : 50,
+              paddingVertical: isMobile ? 0 : 20,
               flexDirection: isMobile ? "column" : "row",
             }}
           >
@@ -30,11 +30,11 @@ export default function HomeContent() {
                 { paddingVertical: isMobile ? 18 : 0}
               ]}
             >
-              <MyAvatar/>
+              <View style={style.rowItem}><MyAvatar/></View>
+              <View style={style.rowItem}><IconRow/></View>
+            </Section>
+            <Section style={style.rowItem}>
               <Bio/> 
-              <View >
-              <IconRow/>
-              </View>
             </Section>
           </Main>
           <Footer>
