@@ -16,9 +16,18 @@ export default function Bio () {
           href="http://nombolo.com"
         >
           Nombolo
-        </A>
+        </A>.
       </H3>
-      <H3 style={{color: theme.colors.text}}>{bio.skills}</H3>
+      <H3 style={{color: theme.colors.text}}>{bio.skills}
+        <A
+            style={{ color: "#5BA9AB"}}
+            target="_blank"
+            href="  https://web.dev/progressive-web-apps/"
+          >
+          PWA
+        </A>. {bio.skillsCont}
+      </H3>
+      
       <H3 style={{color: theme.colors.text}}>{bio.peruse}</H3>
       </>
     )
