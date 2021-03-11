@@ -24,9 +24,7 @@ import {
         backgroundColor: theme.dark ?  CustomDarkTheme.colors.background : CustomLightTheme.colors.background,
       }}
       >
-      <ScrollView>
         <HomeContent style={style}/>
-      </ScrollView>
     </View>
   );
 }

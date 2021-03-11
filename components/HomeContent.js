@@ -2,6 +2,7 @@ import React , {useEffect} from 'react'
 import {
   View,
   Platform,
+  ScrollView,
   useWindowDimensions
  } from 'react-native';
 import { useTheme } from '@react-navigation/native';
@@ -21,7 +22,8 @@ export default function HomeContent() {
       }
     }, [width])
     return (
-      <View style={{ flex: 1 }}>
+      <>
+        <ScrollView style={{ flex: 1 }}>
           <Main
             style={{
               flex: 1,
@@ -43,18 +45,16 @@ export default function HomeContent() {
               </View>
             </Section>
           </Main>
-          <View style={{position: "absolute",
-  bottom: 0,
-  width: "100%",
-  height: "2.5rem",      }}>
-          <Footer style={{position: "absolute",
-  bottom: 0,
-  width: "100%",
-  height: "2.5rem",      }}>
+        </ScrollView>
+        <View>
+          <Footer style={{
+            height: height/10,
+            backgroundColor: theme.colors.background
+            }}>
             <FooterContent/>
           </Footer>
-          </View>
         </View>
+      </>
     );
   }
 
